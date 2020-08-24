@@ -1,0 +1,50 @@
+/* Home */
+
+.home-div {
+    /* background-color: red; */
+    /* align-items: center; */
+    /* height: calc(100vh - 100px); */
+    padding: 30px 100px;
+}
+
+.home-text div {
+    padding: 10px;
+    /* margin-bottom: 50px; */
+}
+
+
+/* // Small devices (landscape phones, less than 768px) */
+
+@media (max-width: 1000px) {
+    .home-div {
+        display: block !important;
+    }
+}
+
+
+/* // Medium devices (tablets, less than 992px) */
+
+@media (max-width:900px) {
+    .home-text {
+        display: block !important;
+    }
+}
+
+
+/* Vertical NAv */
+
+.vertical-link {
+    color: rgb(104, 102, 102);
+}
+
+.vertical-link:hover {
+    color: rgb(104, 102, 102);
+}
+
+.activenav {
+    color: black;
+}
+
+.activenav:hover {
+    color: black;
+}

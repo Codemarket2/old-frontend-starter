@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"90210wcfrontend4123510b4123510b": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}
