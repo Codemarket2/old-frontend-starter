@@ -10,6 +10,7 @@ import Therapies from "./app/screens/Therapies";
 import Services from "./app/screens/Services";
 import Team from "./app/screens/Team";
 import Email from "./app/screens/Email";
+import Etherpad from "./app/screens/Etherpad";
 import Yelp from "./app/screens/Yelp";
 import LinkedIn from "./app/screens/LinkedIn";
 import VerticalNav from "./app/components/VerticalNav";
@@ -109,6 +110,7 @@ function App(props) {
                   render={(props) => <Team data={menuData.teams} {...props} />}
                 />
                 <Route exact path="/email" component={Email} />
+
                 <Route exact path="/signup">
                   {props.authenticated ? <Redirect to="/" /> : <Signup />}
                 </Route>
@@ -128,6 +130,8 @@ function App(props) {
                 </Route>
                 <Route exact path="/" component={Home} />
               </div>
+              {/* End of Container */}
+              <Route exact path="/etherpad" component={Etherpad} />
               <Route
                 exact
                 path="/data/yelp"
