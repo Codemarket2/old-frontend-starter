@@ -14,12 +14,10 @@ const SEND_EMAIL = gql`
     $message: String!
   ) {
     sendEmail(
-      input: {
-        userId: $userId
-        email: $email
-        subject: $subject
-        message: $message
-      }
+      userId: $userId
+      email: $email
+      subject: $subject
+      message: $message
     ) {
       email
     }

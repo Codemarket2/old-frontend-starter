@@ -1,6 +1,6 @@
 projects:
-  internplan-backend-vivekt:
-    schemaPath: src/graphql/schema.json
+  Codegen Project:
+    schemaPath: schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:
@@ -11,5 +11,10 @@ projects:
         generatedFileName: ''
         docsFilePath: src/graphql
         region: us-east-1
-        apiId: nilmqg7425b2vkw6d6nahsgdf4
+        apiId: beggwpjn7nawvewyf6rfa3h7yu
+        frontend: javascript
+        framework: react
         maxDepth: 2
+extensions:
+  amplify:
+    version: 3

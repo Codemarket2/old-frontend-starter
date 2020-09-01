@@ -1,77 +1,65 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createOneTeam = /* GraphQL */ `
-  mutation CreateOneTeam(
+export const createOneIvdrip = /* GraphQL */ `
+  mutation CreateOneIvdrip(
+    $description: String!
     $slug: String!
     $title: String!
-    $description: String!
   ) {
-    createOneTeam(slug: $slug, title: $title, description: $description) {
+    createOneIvdrip(description: $description, slug: $slug, title: $title) {
       _id
+      description
       slug
       title
-      description
     }
-  }
-`;
-export const updateOneTeam = /* GraphQL */ `
-  mutation UpdateOneTeam(
-    $id: ID!
-    $slug: String
-    $title: String
-    $description: String
-  ) {
-    updateOneTeam(
-      id: $id
-      slug: $slug
-      title: $title
-      description: $description
-    ) {
-      _id
-      slug
-      title
-      description
-    }
-  }
-`;
-export const deleteOneTeam = /* GraphQL */ `
-  mutation DeleteOneTeam($id: ID!) {
-    deleteOneTeam(id: $id)
   }
 `;
 export const createOneService = /* GraphQL */ `
   mutation CreateOneService(
+    $description: String!
     $slug: String!
     $title: String!
-    $description: String!
   ) {
-    createOneService(slug: $slug, title: $title, description: $description) {
+    createOneService(description: $description, slug: $slug, title: $title) {
       _id
+      description
       slug
       title
-      description
     }
   }
 `;
-export const updateOneService = /* GraphQL */ `
-  mutation UpdateOneService(
-    $id: ID!
-    $slug: String
-    $title: String
-    $description: String
+export const createOneTeam = /* GraphQL */ `
+  mutation CreateOneTeam(
+    $description: String!
+    $slug: String!
+    $title: String!
   ) {
-    updateOneService(
-      id: $id
-      slug: $slug
-      title: $title
-      description: $description
-    ) {
+    createOneTeam(description: $description, slug: $slug, title: $title) {
       _id
+      description
       slug
       title
-      description
     }
+  }
+`;
+export const createOneTherapie = /* GraphQL */ `
+  mutation CreateOneTherapie(
+    $description: String!
+    $slug: String!
+    $title: String!
+  ) {
+    createOneTherapie(description: $description, slug: $slug, title: $title) {
+      _id
+      description
+      slug
+      title
+    }
+  }
+`;
+export const deleteOneIvdrip = /* GraphQL */ `
+  mutation DeleteOneIvdrip($id: ID!) {
+    deleteOneIvdrip(id: $id)
   }
 `;
 export const deleteOneService = /* GraphQL */ `
@@ -79,38 +67,9 @@ export const deleteOneService = /* GraphQL */ `
     deleteOneService(id: $id)
   }
 `;
-export const createOneTherapie = /* GraphQL */ `
-  mutation CreateOneTherapie(
-    $slug: String!
-    $title: String!
-    $description: String!
-  ) {
-    createOneTherapie(slug: $slug, title: $title, description: $description) {
-      _id
-      slug
-      title
-      description
-    }
-  }
-`;
-export const updateOneTherapie = /* GraphQL */ `
-  mutation UpdateOneTherapie(
-    $id: ID!
-    $slug: String
-    $title: String
-    $description: String
-  ) {
-    updateOneTherapie(
-      id: $id
-      slug: $slug
-      title: $title
-      description: $description
-    ) {
-      _id
-      slug
-      title
-      description
-    }
+export const deleteOneTeam = /* GraphQL */ `
+  mutation DeleteOneTeam($id: ID!) {
+    deleteOneTeam(id: $id)
   }
 `;
 export const deleteOneTherapie = /* GraphQL */ `
@@ -118,42 +77,104 @@ export const deleteOneTherapie = /* GraphQL */ `
     deleteOneTherapie(id: $id)
   }
 `;
-export const createOneIvdrip = /* GraphQL */ `
-  mutation CreateOneIvdrip(
-    $slug: String!
-    $title: String!
-    $description: String!
+export const sendEmail = /* GraphQL */ `
+  mutation SendEmail(
+    $email: String!
+    $message: String!
+    $subject: String!
+    $userId: String!
   ) {
-    createOneIvdrip(slug: $slug, title: $title, description: $description) {
+    sendEmail(
+      email: $email
+      message: $message
+      subject: $subject
+      userId: $userId
+    ) {
       _id
-      slug
-      title
-      description
+      email
+      message
+      subject
+      userId
     }
   }
 `;
 export const updateOneIvdrip = /* GraphQL */ `
   mutation UpdateOneIvdrip(
+    $description: String
     $id: ID!
     $slug: String
     $title: String
-    $description: String
   ) {
     updateOneIvdrip(
+      description: $description
       id: $id
       slug: $slug
       title: $title
-      description: $description
     ) {
       _id
+      description
       slug
       title
-      description
     }
   }
 `;
-export const deleteOneIvdrip = /* GraphQL */ `
-  mutation DeleteOneIvdrip($id: ID!) {
-    deleteOneIvdrip(id: $id)
+export const updateOneService = /* GraphQL */ `
+  mutation UpdateOneService(
+    $description: String
+    $id: ID!
+    $slug: String
+    $title: String
+  ) {
+    updateOneService(
+      description: $description
+      id: $id
+      slug: $slug
+      title: $title
+    ) {
+      _id
+      description
+      slug
+      title
+    }
+  }
+`;
+export const updateOneTeam = /* GraphQL */ `
+  mutation UpdateOneTeam(
+    $description: String
+    $id: ID!
+    $slug: String
+    $title: String
+  ) {
+    updateOneTeam(
+      description: $description
+      id: $id
+      slug: $slug
+      title: $title
+    ) {
+      _id
+      description
+      slug
+      title
+    }
+  }
+`;
+export const updateOneTherapie = /* GraphQL */ `
+  mutation UpdateOneTherapie(
+    $description: String
+    $id: ID!
+    $slug: String
+    $title: String
+  ) {
+    updateOneTherapie(
+      description: $description
+      id: $id
+      slug: $slug
+      title: $title
+    ) {
+      _id
+      description
+      slug
+      title
+    }
   }
 `;

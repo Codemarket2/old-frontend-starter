@@ -10,7 +10,6 @@ import Therapies from "./app/screens/Therapies";
 import Services from "./app/screens/Services";
 import Team from "./app/screens/Team";
 import Email from "./app/screens/Email";
-import Etherpad from "./app/screens/Etherpad";
 import Yelp from "./app/screens/Yelp";
 import LinkedIn from "./app/screens/LinkedIn";
 import VerticalNav from "./app/components/VerticalNav";
@@ -131,7 +130,6 @@ function App(props) {
                 <Route exact path="/" component={Home} />
               </div>
               {/* End of Container */}
-              <Route exact path="/etherpad" component={Etherpad} />
               <Route
                 exact
                 path="/data/yelp"
