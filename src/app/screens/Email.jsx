@@ -16,11 +16,11 @@ const SEND_EMAIL = gql`
   ) {
     sendEmail(
       userId: $userId
-      email: $email
+      emails: $emails
       subject: $subject
       message: $message
     ) {
-      email
+      userId
     }
   }
 `;
@@ -70,7 +70,7 @@ const Email = (props) => {
     sendEmail({
       variables: {
         userId: props.userId,
-        emails: payload.email,
+        emails: payload.emails,
         subject: payload.subject,
         message: payload.message,
       },
@@ -88,6 +88,9 @@ const Email = (props) => {
       .catch((err) => {
         props.dispatch(hideLoading());
         alert(`Something went wrong. Please try again!`);
+        // console.log("====================================");
+        // console.log(err);
+        // console.log("====================================");
         setPayload({
           ...payload,
           disabled: false,
@@ -102,10 +105,6 @@ const Email = (props) => {
   if (loading) return null;
   if (error) return `Error! ${error.message}`;
 
-  // console.log("====================================");
-  // console.log(data);
-  // console.log("====================================");
-
   const options = data.getAllEmails.map((d) => ({
     value: d,
     label: d.businessName,
@@ -113,7 +112,7 @@ const Email = (props) => {
 
   return (
     <div className="mt-5 px-5">
-      {/* <p>{JSON.stringify(payload)}</p> */}
+      {/* {JSON.stringify(payload)} */}
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Select onChange={handleSelect} options={options} required />

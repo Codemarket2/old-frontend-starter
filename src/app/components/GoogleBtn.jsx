@@ -26,6 +26,7 @@ class GoogleBtn extends Component {
   };
 
   onFailure(response) {
+    console.log("error ", response);
     alert("Something went wrong please try again!");
   }
 
@@ -37,7 +38,8 @@ class GoogleBtn extends Component {
         onSuccess={this.onSuccess}
         onFailure={this.onFailure}
         cookiePolicy={"single_host_origin"}
-        responseType="code,token"
+        // isSignedIn="false"
+        // responseType="code,token"
       />
     );
   }
