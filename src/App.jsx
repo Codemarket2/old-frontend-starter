@@ -39,7 +39,7 @@ function App(props) {
   const getMenu = async () => {
     props.dispatch(showLoading());
 
-    var data = JSON.parse(localStorage.getItem("90210wc-data"));
+    var data = JSON.parse(localStorage.getItem("frontend-starter"));
     if (data) {
       props.dispatch(setAuthUser(data));
     }
@@ -109,6 +109,10 @@ function App(props) {
                   render={(props) => <Team data={menuData.teams} {...props} />}
                 />
                 <Route exact path="/email" component={Email} />
+                {/* <Route exact path="/" component={Home} /> */}
+                <Route exact path="/">
+                  {props.authenticated ? <Home /> : <Redirect to="/signin" />}
+                </Route>
 
                 <Route exact path="/signup">
                   {props.authenticated ? <Redirect to="/" /> : <Signup />}
@@ -127,7 +131,6 @@ function App(props) {
                     <ForgetPassword />
                   )}
                 </Route>
-                <Route exact path="/" component={Home} />
               </div>
               {/* End of Container */}
               <Route

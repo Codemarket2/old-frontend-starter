@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import Select from "react-select";
 import { connect } from "react-redux";
 import { showLoading, hideLoading } from "react-redux-loading";
-import { useMutation, gql } from "@apollo/client";
+import { useQuery, useMutation, gql } from "@apollo/client";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 
 import UnAuthorised from "../components/UnAuthorised";
@@ -9,7 +10,7 @@ import UnAuthorised from "../components/UnAuthorised";
 const SEND_EMAIL = gql`
   mutation SendEmail(
     $userId: String!
-    $email: String!
+    $emails: [String]
     $subject: String!
     $message: String!
   ) {
@@ -24,14 +25,39 @@ const SEND_EMAIL = gql`
   }
 `;
 
+const GET_ALL_EMAILS = gql`
+  query GetAllEmails {
+    getAllEmails {
+      _id
+      emails
+      businessName
+    }
+  }
+`;
+
 const Email = (props) => {
   const [sendEmail] = useMutation(SEND_EMAIL);
+  const { loading, error, data } = useQuery(GET_ALL_EMAILS);
+  const [selectedOption, setSelectedOption] = useState();
   const [payload, setPayload] = useState({
-    email: "",
+    emails: [],
     subject: "",
     message: "",
     disabled: false,
   });
+  // const [options, setOptions] = useState([
+  //   { value: "contactvivekvt@gmail.com", label: "contactvivekvt@gmail.com" },
+  //   { value: "contactvivekvt1@gmail.com", label: "contactvivekvt1@gmail.com" },
+  //   { value: "contactvivekvt2@gmail.com", label: "contactvivekvt2@gmail.com" },
+  // ]);
+
+  const handleSelect = (e) => {
+    setSelectedOption(e);
+    setPayload({
+      ...payload,
+      emails: e.value.emails,
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,19 +66,20 @@ const Email = (props) => {
       ...payload,
       disabled: true,
     });
+
     sendEmail({
       variables: {
         userId: props.userId,
-        email: payload.email,
+        emails: payload.email,
         subject: payload.subject,
         message: payload.message,
       },
     })
       .then(() => {
         props.dispatch(hideLoading());
-        alert(`Email Succesfully send to ${payload.email}`);
+        alert(`Email Succesfully send to ` + JSON.stringify(payload.emails));
         setPayload({
-          email: "",
+          emails: [],
           subject: "",
           message: "",
           disabled: false,
@@ -72,10 +99,26 @@ const Email = (props) => {
     return <UnAuthorised redirectPath="/email" />;
   }
 
+  if (loading) return null;
+  if (error) return `Error! ${error.message}`;
+
+  // console.log("====================================");
+  // console.log(data);
+  // console.log("====================================");
+
+  const options = data.getAllEmails.map((d) => ({
+    value: d,
+    label: d.businessName,
+  }));
+
   return (
     <div className="mt-5 px-5">
+      {/* <p>{JSON.stringify(payload)}</p> */}
       <Form onSubmit={handleSubmit}>
         <FormGroup>
+          <Select onChange={handleSelect} options={options} required />
+        </FormGroup>
+        {/* <FormGroup>
           <Input
             size="lg"
             type="email"
@@ -85,7 +128,7 @@ const Email = (props) => {
             onChange={(e) => setPayload({ ...payload, email: e.target.value })}
             required
           />
-        </FormGroup>
+        </FormGroup> */}
         <FormGroup>
           <Input
             size="lg"

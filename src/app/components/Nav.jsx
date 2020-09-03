@@ -27,7 +27,7 @@ const NavC = (props) => {
 
   const handleLogout = () => {
     Auth.signOut().then(() => {
-      localStorage.removeItem("90210wc-data");
+      localStorage.removeItem("frontend-starter");
       props.dispatch(unsetAuthUser());
     });
   };
@@ -126,19 +126,36 @@ const NavC = (props) => {
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
-          <NavbarText className="py-0">
-            {props.auth.authenticated ? (
-              <Button onClick={handleLogout} color="light" outline>
-                Logout
-              </Button>
-            ) : (
+
+          {props.auth.authenticated ? (
+            <>
+              <NavbarText className="pr-2 text-light">
+                <img
+                  className="my-n3 mr-1"
+                  style={{ width: "40px", borderRadius: "50%" }}
+                  src={
+                    props.auth.data.attributes.imageUrl
+                      ? props.auth.data.attributes.imageUrl
+                      : require("../../assets/default.jpg")
+                  }
+                />
+                {props.auth.data.attributes.name}
+              </NavbarText>
+              <NavbarText className="py-0">
+                <Button onClick={handleLogout} color="light" outline>
+                  Logout
+                </Button>
+              </NavbarText>
+            </>
+          ) : (
+            <NavbarText className="py-0">
               <Link onClick={handleRedirect} to="/signin">
                 <Button color="light" outline>
                   SignUp/SignIn
                 </Button>
               </Link>
-            )}
-          </NavbarText>
+            </NavbarText>
+          )}
         </Collapse>
       </Navbar>
     </>

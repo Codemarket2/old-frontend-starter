@@ -5,6 +5,7 @@ import { Auth } from "aws-amplify";
 import { connect } from "react-redux";
 import { showLoading, hideLoading } from "react-redux-loading";
 import { setAuthUser } from "../../redux/actions/auth";
+import GoogleBtn from "../../components/GoogleBtn";
 
 class Signin extends Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class Signin extends Component {
 
           this.props.dispatch(setAuthUser(data));
 
-          localStorage.setItem("90210wc-data", JSON.stringify(data));
+          localStorage.setItem("frontend-starter", JSON.stringify(data));
 
           this.setState({ ...this.state, disabled: false });
         })
@@ -125,7 +126,7 @@ class Signin extends Component {
     } else {
       return (
         <div className="mt-4">
-          <h1 className="text-center">Sign In Form</h1>
+          <h1 className="text-center">Sign In</h1>
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
               <Label for="email">Email</Label>
@@ -168,6 +169,12 @@ class Signin extends Component {
               Sign In
             </Button>
           </Form>
+          <div className=" text-center d-flex flex-column">
+            <p>OR</p>
+            <div>
+              <GoogleBtn />
+            </div>
+          </div>
         </div>
       );
     }
