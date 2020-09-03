@@ -16,6 +16,7 @@ class GoogleBtn extends Component {
         name: response.profileObj.name,
         email: response.profileObj.email,
         imageUrl: response.profileObj.imageUrl,
+        sub: response.profileObj.googleId,
       },
       response,
     };
