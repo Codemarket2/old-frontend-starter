@@ -25,6 +25,7 @@ import ForgetPassword from "./app/screens/auth/ForgetPassword";
 import CreateEmailTemplate from "./app/screens/Email/CreateEmailTemplate";
 import "./App.css";
 import SendTemplateEmail from "./app/screens/Email/SendTemplateEmail";
+import { MapContainer } from "./app/screens/Map";
 
 Amplify.configure(aws_exports);
 
@@ -111,6 +112,7 @@ function App(props) {
                   render={(props) => <Team data={menuData.teams} {...props} />}
                 />
                 <Route exact path="/email" component={Email} />
+                <Route exact path="/map" component={MapContainer} />
                 <Route
                   exact
                   path="/createemailtemplate"
