@@ -22,7 +22,9 @@ import aws_exports from "./aws-exports";
 import Signup from "./app/screens/auth/Signup";
 import Signin from "./app/screens/auth/Signin";
 import ForgetPassword from "./app/screens/auth/ForgetPassword";
+import CreateEmailTemplate from "./app/screens/Email/CreateEmailTemplate";
 import "./App.css";
+import SendTemplateEmail from "./app/screens/Email/SendTemplateEmail";
 
 Amplify.configure(aws_exports);
 
@@ -109,6 +111,16 @@ function App(props) {
                   render={(props) => <Team data={menuData.teams} {...props} />}
                 />
                 <Route exact path="/email" component={Email} />
+                <Route
+                  exact
+                  path="/createemailtemplate"
+                  component={CreateEmailTemplate}
+                />
+                <Route
+                  exact
+                  path="/sendtemplateemail"
+                  component={SendTemplateEmail}
+                />
                 {/* <Route exact path="/" component={Home} /> */}
                 <Route exact path="/">
                   {props.authenticated ? <Home /> : <Redirect to="/signin" />}

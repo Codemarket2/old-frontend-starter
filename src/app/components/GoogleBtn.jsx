@@ -8,9 +8,6 @@ const CLIENT_ID =
 
 class GoogleBtn extends Component {
   onSuccess = (response) => {
-    console.log("Google response ----------");
-    console.log(response);
-    console.log(response.profileObj);
     let user = {
       attributes: {
         name: response.profileObj.name,
@@ -27,7 +24,6 @@ class GoogleBtn extends Component {
   };
 
   onFailure(response) {
-    console.log("error ", response);
     alert("Something went wrong please try again!");
   }
 
@@ -39,8 +35,6 @@ class GoogleBtn extends Component {
         onSuccess={this.onSuccess}
         onFailure={this.onFailure}
         cookiePolicy={"single_host_origin"}
-        // isSignedIn="false"
-        // responseType="code,token"
       />
     );
   }

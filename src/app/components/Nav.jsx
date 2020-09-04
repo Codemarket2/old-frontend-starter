@@ -114,6 +114,12 @@ const NavC = (props) => {
                 Other
               </DropdownToggle>
               <DropdownMenu>
+                <DropdownItem tag={Link} to="/createemailtemplate">
+                  Create Email Template
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/sendtemplateemail">
+                  Send Template Email
+                </DropdownItem>
                 <DropdownItem tag={Link} to="/email">
                   Email
                 </DropdownItem>
