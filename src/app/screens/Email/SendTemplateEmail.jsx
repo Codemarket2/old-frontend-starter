@@ -97,6 +97,9 @@ const SendTemplateEmail = (props) => {
       .catch((err) => {
         props.dispatch(hideLoading());
         alert(`Something went wrong. Please try again!`);
+        console.log("====================================");
+        console.log(err);
+        console.log("====================================");
         setPayload({
           ...payload,
           disabled: false,
