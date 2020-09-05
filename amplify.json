@@ -1,12 +1,9 @@
 {
-  "features":
-  {
-    "graphqltransformer":
-    {
+  "features": {
+    "graphqltransformer": {
       "transformerversion": 5
     },
-    "keytransformer":
-    {
+    "keytransformer": {
       "defaultquery": true
     }
   }

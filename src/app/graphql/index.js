@@ -5,7 +5,7 @@ import {
   ApolloLink,
 } from "@apollo/client";
 import { createAuthLink } from "aws-appsync-auth-link";
-import aws_exports from "../../aws-exports";
+import aws_exports from "../../aws-exports-old";
 
 const url = aws_exports.aws_appsync_graphqlEndpoint;
 const region = aws_exports.aws_appsync_region;
