@@ -10,8 +10,8 @@ import Therapies from "./app/screens/Therapies";
 import Services from "./app/screens/Services";
 import Team from "./app/screens/Team";
 import Email from "./app/screens/Email";
-import Yelp from "./app/screens/Yelp";
-import LinkedIn from "./app/screens/LinkedIn";
+import Yelp from "./app/screens/data/Yelp";
+import LinkedIn from "./app/screens/data/LinkedIn";
 import VerticalNav from "./app/components/VerticalNav";
 import Appointment from "./app/screens/Appointment";
 import { client } from "./app/graphql/";
@@ -25,6 +25,7 @@ import ForgetPassword from "./app/screens/auth/ForgetPassword";
 import CreateEmailTemplate from "./app/screens/Email/CreateEmailTemplate";
 import "./App.css";
 import SendTemplateEmail from "./app/screens/Email/SendTemplateEmail";
+import ImageUpload from "./app/screens/ImageUpload";
 
 Amplify.configure(aws_exports);
 
@@ -121,6 +122,7 @@ function App(props) {
                   path="/sendtemplateemail"
                   component={SendTemplateEmail}
                 />
+                <Route exact path="/imageupload" component={ImageUpload} />
                 {/* <Route exact path="/" component={Home} /> */}
                 <Route exact path="/">
                   {props.authenticated ? <Home /> : <Redirect to="/signin" />}

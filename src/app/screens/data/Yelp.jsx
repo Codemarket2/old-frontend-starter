@@ -4,7 +4,7 @@ import { Button, Form, FormGroup, Input, Alert } from "reactstrap";
 import axios from "axios";
 import { showLoading, hideLoading } from "react-redux-loading";
 
-import UnAuthorised from "../components/UnAuthorised";
+import UnAuthorised from "../../components/UnAuthorised";
 
 const Yelp = ({ dispatch, authenticated, userId }) => {
   const [data, setData] = useState();

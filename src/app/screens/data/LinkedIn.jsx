@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Input, Alert } from "reactstrap";
 import axios from "axios";
 import { connect } from "react-redux";
 
-import UnAuthorised from "../components/UnAuthorised";
+import UnAuthorised from "../../components/UnAuthorised";
 
 const LinkedIn = ({ authenticated }) => {
   const [data, setData] = useState();

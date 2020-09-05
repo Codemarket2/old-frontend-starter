@@ -79,7 +79,7 @@ const NavC = (props) => {
                   ))}
               </DropdownMenu>
             </UncontrolledDropdown>
-            <UncontrolledDropdown nav inNavbar>
+            {/* <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 Other Services
               </DropdownToggle>
@@ -95,8 +95,8 @@ const NavC = (props) => {
                     </DropdownItem>
                   ))}
               </DropdownMenu>
-            </UncontrolledDropdown>
-            <UncontrolledDropdown nav inNavbar>
+            </UncontrolledDropdown> */}
+            {/* <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 Team
               </DropdownToggle>
@@ -108,10 +108,26 @@ const NavC = (props) => {
                     </DropdownItem>
                   ))}
               </DropdownMenu>
+            </UncontrolledDropdown> */}
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Data
+              </DropdownToggle>
+              <DropdownMenu>
+                {/* <DropdownItem tag={Link} to="/map">
+                  Map
+                </DropdownItem> */}
+                <DropdownItem tag={Link} to="/data/yelp">
+                  Yelp Scrapper
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/data/linkedin">
+                  LinkedIn Scrapper
+                </DropdownItem>
+              </DropdownMenu>
             </UncontrolledDropdown>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                Other
+                SES
               </DropdownToggle>
               <DropdownMenu>
                 {/* <DropdownItem tag={Link} to="/map">
@@ -126,11 +142,15 @@ const NavC = (props) => {
                 <DropdownItem tag={Link} to="/email">
                   Email
                 </DropdownItem>
-                <DropdownItem tag={Link} to="/data/yelp">
-                  Yelp Scrapper
-                </DropdownItem>
-                <DropdownItem tag={Link} to="/data/linkedin">
-                  LinkedIn Scrapper
+              </DropdownMenu>
+            </UncontrolledDropdown>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Other
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem tag={Link} to="/imageupload">
+                  Image Upload
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
