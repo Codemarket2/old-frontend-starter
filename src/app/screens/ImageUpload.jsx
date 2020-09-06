@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Storage } from "aws-amplify";
-import { useQuery, useMutation, gql } from "@apollo/client";
+import { useQuery, useMutation, useSubscription, gql } from "@apollo/client";
 import { v4 as uuid } from "uuid";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { showLoading, hideLoading } from "react-redux-loading";
 import config from "../../aws-exports";
 import UnAuthorised from "../components/UnAuthorised";
+import { client } from "../graphql";
 
 const {
   aws_user_files_s3_bucket_region: region,
@@ -17,6 +18,8 @@ const Upload_Image = gql`
   mutation UploadImage($title: String!, $imageUrl: String!) {
     uploadImage(title: $title, imageUrl: $imageUrl) {
       _id
+      imageUrl
+      title
     }
   }
 `;
@@ -31,14 +34,47 @@ const GET_ALL_IMAGES = gql`
   }
 `;
 
+const IMAGE_SUBSCRIPTION = gql`
+  subscription UploadedImage {
+    uploadedImage {
+      _id
+      imageUrl
+      title
+    }
+  }
+`;
+
 function ImageUpload(props) {
   const [uploadImage] = useMutation(Upload_Image);
-  const { loading, error, data, refetch } = useQuery(GET_ALL_IMAGES);
+  const { loading, error, data } = useQuery(GET_ALL_IMAGES);
+  const { data: newData } = useSubscription(IMAGE_SUBSCRIPTION);
   const [file, updateFile] = useState(null);
   const [productName, updateProductName] = useState("");
   const [title, updateTitle] = useState("");
   const [disabled, updateDisabled] = useState(false);
-  const [products, updateProducts] = useState([]);
+  const [images, updateImages] = useState([]);
+  const [newImage, updatenewImage] = useState(null);
+
+  const getImages = async () => {
+    props.dispatch(showLoading());
+
+    client
+      .query({
+        query: GET_ALL_IMAGES,
+      })
+      .then(({ data }) => {
+        updateImages(data.getAllImages);
+        props.dispatch(hideLoading());
+      })
+      .catch((err) => {
+        console.log(err);
+        props.dispatch(hideLoading());
+      });
+  };
+
+  useEffect(() => {
+    getImages();
+  }, []);
 
   function handleChange(event) {
     const {
@@ -72,19 +108,27 @@ function ImageUpload(props) {
             imageUrl: url,
           },
         });
-
-        refetch();
-        // updateProductName("");
-        // updateFile(null);
+        updateProductName("");
+        updateFile(null);
         updateTitle("");
+        updateDisabled(false);
         props.dispatch(hideLoading());
         alert("Image Uploaded Succesfully");
-        updateDisabled(true);
       } catch (err) {
         alert("Something went wrong please try again");
-        updateDisabled(true);
+        updateDisabled(false);
         props.dispatch(hideLoading());
       }
+    }
+  }
+
+  if (newData) {
+    if (newImage === null) {
+      updatenewImage(newData.uploadedImage);
+      updateImages([...images, newData.uploadedImage]);
+    } else if (newImage._id !== newData.uploadedImage._id) {
+      updatenewImage(newData.uploadedImage);
+      updateImages([...images, newData.uploadedImage]);
     }
   }
 
@@ -98,6 +142,7 @@ function ImageUpload(props) {
   return (
     <>
       <Form className="my-5" onSubmit={handleSubmit}>
+        {/* <h1>{JSON.stringify(newData)}</h1> */}
         <FormGroup>
           <Label for="title">Title</Label>
           <Input
@@ -105,6 +150,7 @@ function ImageUpload(props) {
             name="title"
             id="title"
             placeholder="Title"
+            value={title}
             onChange={(e) => updateTitle(e.target.value)}
             required
           />
@@ -130,14 +176,16 @@ function ImageUpload(props) {
       </Form>
       <div>
         <h3 className="text-center">Uploaded Images List</h3>
-        {data.getAllImages.map((item, i) => (
-          <div key={i} className="text-center">
-            <h6>{item.title}</h6>
-            <div>
-              <img width="200" alt={item.title} src={item.imageUrl} />
+        <div style={{ display: "flex", flexDirection: "column-reverse" }}>
+          {images.map((item, i) => (
+            <div key={i} className="text-center">
+              <h6>{item.title}</h6>
+              <div>
+                <img width="200" alt={item.title} src={item.imageUrl} />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </>
   );

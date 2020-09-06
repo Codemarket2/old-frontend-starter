@@ -8,6 +8,7 @@
         "@testing-library/react": "^9.3.2",
         "@testing-library/user-event": "^7.1.2",
         "aws-amplify": "^3.0.23",
+        "aws-appsync": "^4.0.0",
         "aws-appsync-auth-link": "^2.0.2",
         "axios": "^0.19.2",
         "bootstrap": "^4.5.0",
@@ -26,6 +27,7 @@
         "reactstrap": "^8.5.1",
         "redux": "^4.0.5",
         "redux-thunk": "^2.3.0",
+        "subscriptions-transport-ws": "^0.9.18",
         "uuid": "^8.3.0"
     },
     "scripts": {
